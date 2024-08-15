@@ -37,3 +37,25 @@ const requireAuth = async (req, res, next) => {
 };
 
 module.exports = requireAuth;
+
+const requireRole = (requiredRole) => {
+  return (req, res, next) => {
+    // Assurez-vous que l'utilisateur est authentifié
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ message: "Non autorisé. Vous devez vous connecter." });
+    }
+
+    // Vérifiez si l'utilisateur a le rôle requis
+    if (req.user.role !== requiredRole) {
+      return res
+        .status(403)
+        .json({ message: "Accès refusé. Vous n'avez pas le rôle requis." });
+    }
+
+    next(); // L'utilisateur a le rôle requis, passez au middleware suivant ou à la route
+  };
+};
+
+module.exports = requireRole;

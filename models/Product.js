@@ -5,24 +5,42 @@ const productSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      unique: true,
       required: true,
+    },
+    storageLocation: {
+      type: String,
+    },
+    storageDepartment: {
+      type: String,
     },
     category: {
       type: String,
       trim: true,
       required: false,
     },
-    subCategory: {
+    subCategory1: {
       type: String,
       required: false,
     },
-    Family: {
+    subCategory2: {
       type: String,
       required: false,
     },
-    subFamily: {
+    family: {
       type: String,
       required: false,
+    },
+    subFamily1: {
+      type: String,
+      required: false,
+    },
+    subFamily2: {
+      type: String,
+      required: false,
+    },
+    foodType: {
+      type: String,
     },
 
     authorId: {
@@ -30,11 +48,11 @@ const productSchema = new mongoose.Schema(
       required: true,
     }, // Référence à User
 
-    Picture: {
+    picture: {
       type: String,
       default: "https://example.com/default-profile-picture.jpg", // URL de l'image par défaut
     },
-    Price: {
+    price: {
       type: Number,
       required: true,
     },

@@ -3,7 +3,7 @@ const { isEmail } = require("validator");
 const bcrypt = require("bcryptjs");
 const roles = ["admin", "manager", "user", "storekeeper"];
 
-// regex pour le mot de passe (4-8 caratères, 1 Maj, 1 Chiffre, 1 symbole)
+// regex pour le mot de passe (4-8 caratères, 1 Maj, 1 Chiffre, 1 symbole) TODO
 const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Z\d\W_]{4,8}$/;
 
 const userSchema = new mongoose.Schema(
@@ -32,8 +32,8 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: roles, // Utilisation de l'énum pour restreindre les valeurs possibles
-      default: "user", // Valeur par défaut si aucun rôle n'est spécifié
+      enum: ["user", "manager", "admin", "storekeeper"],
+      default: "user",
     },
     profilePicture: {
       type: String,
