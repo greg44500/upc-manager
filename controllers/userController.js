@@ -82,7 +82,7 @@ module.exports.editAccount = async (req, res) => {
 
     // Répondre avec un message de réussite
     res.status(200).json({
-      message: ` ${user.firstname} ${user.lastname}, vous venez de mettre à jour vos informations avec succés!`,
+      message: "vous venez de mettre à jour vos informations avec succés!",
     });
   } catch (err) {
     console.error(err.message);

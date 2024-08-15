@@ -1,6 +1,7 @@
 const UserModel = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { signUpErrors } = require("./utils/error.utils");
 
 module.exports.signUp = async (req, res) => {
   const { email, password } = req.body;
@@ -20,7 +21,8 @@ module.exports.signUp = async (req, res) => {
       .status(201)
       .json({ message: `${email} :  votre compte a été créé avec succés` });
   } catch (error) {
-    res.status(200).send(error);
+    const errors = signUpErrors(error);
+    res.status(200).send({ errors });
   }
 };
 module.exports.signIn = async (req, res) => {
